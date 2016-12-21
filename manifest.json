@@ -1,0 +1,64 @@
+{
+  "manifestVersion": 1,
+  "name": "CADJPY",
+  "description": "CAD to JPY exchange rate",
+  "version": 1,
+  "versionString": "1",
+  "author": "NatsumiHoshino",
+  "organization": "Atelier Hoshino",
+  "contactEmail": "dev@kagehoshi.com",
+  "tileIcon": {
+    "46": "icons/largeIcon.png"
+  },
+  "badgeIcon": {
+    "24": "icons/smallIcon.png"
+  },
+  "icons": {},
+  "refreshIntervalMinutes": 30,
+  "tileTheme": {
+    "base": "d94c66",
+    "highlight": "ea5475",
+    "lowlight": "c64763",
+    "secondary": "a3919c",
+    "highContrast": "bf455f",
+    "muted": "993344"
+  },
+  "resources": [
+    {
+      "url": "http://www.bankofcanada.ca/stats/assets/rates_rss/closing/en_JPY_CLOSE.xml",
+      "style": "Simple",
+      "content": {
+        "Time": "/rdf:RDF/item/cb:statistics/cb:exchangeRate/cb:observationPeriod",
+        "Rate": "/rdf:RDF/item/cb:statistics/cb:exchangeRate/cb:value"
+      }
+    }
+  ],
+  "pages": [
+    {
+      "layout": "MSBand_SingleMetricWithIcon",
+      "condition": "true",
+      "textBindings": [
+        {
+          "elementId": "12",
+          "value": "{{Time}}"
+        },
+        {
+          "elementId": "21",
+          "value": "{{Rate}}"
+        }
+      ]
+    }
+  ],
+  "notifications": [
+    {
+      "condition": "{{Rate}} > 88",
+      "title": "Good CADJPY rate!",
+      "body": "{{Rate}}"
+    },
+    {
+      "condition": "{{Rate}} < 85",
+      "title": "Rate is bad",
+      "body": "{{Rate}}"
+    }
+  ]
+}
